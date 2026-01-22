@@ -1,11 +1,20 @@
 # Kasir API
 
-Kasir API adalah REST API yang dibangun menggunakan Go untuk sistem manajemen kasir/penjualan. API ini menyediakan endpoint untuk mengelola produk dan kategori dengan database PostgreSQL.
+Kasir API adalah REST API yang dibangun menggunakan Go untuk penugasan project bootcamp Jago Golang Dasar - CodeWithUmam.
 
-## Fitur Utama
+## Notes
 
-- **Product Management**: CRUD operations untuk produk (Create, Read, Update, Delete)
-- **Category Management**: CRUD operations untuk kategori (Create, Read, Update, Delete)
+- Category service saat ini bersifat statik (in-memory) dan tidak terhubung langsung ke database — ini sengaja dibuat untuk tujuan pembelajaran. Data kategori hanya tersimpan selama aplikasi berjalan dan akan direset ketika server direstart.
+- Product service terhubung dengan database PostgreSQL (contoh: Neon Serverless) untuk menunjukan bagaimana menyimpan data yang persisten. Pastikan `DATABASE_URL` di file `.env` dikonfigurasi jika ingin menyimpan produk ke database.
+- Perilaku penyimpanan:
+  - Produk: disimpan ke PostgreSQL (persisted)
+  - Kategori: disimpan di memory (non-persisted)
+- Semua endpoint mengembalikan JSON response
+
+## Ada apa disini
+
+- **CRUD Product**: CRUD operations untuk produk (Create, Read, Update, Delete)
+- **CRUD Category**: CRUD operations untuk kategori (Create, Read, Update, Delete)
 - **Health Check**: Endpoint untuk mengecek status API
 - **Database Integration**: Terintegrasi dengan PostgreSQL (Neon Serverless)
 
@@ -79,16 +88,7 @@ kasir-api/
 └── README.md
 ```
 
-## Architecture
-
-Aplikasi ini mengikuti clean architecture pattern dengan layers:
-
-1. **Handler Layer**: Menangani HTTP requests dan responses
-2. **Service Layer**: Business logic dan validasi
-3. **Repository Layer**: Data access layer untuk database operations
-4. **Model Layer**: Data structures/entities
-
-## API Endpoints
+## Ringkasan API Endpoints (Buka docs untuk lebih lengkap)
 
 ### Health Check
 - **GET** `/health` - Check API status
@@ -153,6 +153,7 @@ Untuk testing API, Anda dapat menggunakan:
 - **Postman** - GUI client untuk HTTP requests
 - **curl** - Command line tool
 - **Thunder Client** - VS Code extension
+- **KeyRunner** - VS Code extension
 
 ## Environment Variables
 
@@ -160,27 +161,4 @@ Untuk testing API, Anda dapat menggunakan:
 |----------|-------------|
 | `DATABASE_URL` | PostgreSQL connection string |
 
-## Contributing
-
-1. Create feature branch (`git checkout -b feature/amazing-feature`)
-2. Commit changes (`git commit -m 'Add amazing feature'`)
-3. Push to branch (`git push origin feature/amazing-feature`)
-4. Open Pull Request
-
-## Notes
-
-- Category service saat ini bersifat statik dan tidak terhubung langsung ke database (untuk pembelajaran)
-- Product service terhubung dengan database PostgreSQL
-- Semua endpoint mengembalikan JSON response
-
-## License
-
-Proyek ini adalah untuk pembelajaran.
-
-## Contact & Support
-
-Untuk pertanyaan atau issues, silakan buat issue di repository ini.
-
----
-
-Last Updated: January 2026
+Sekian dan Terima Kasih.
