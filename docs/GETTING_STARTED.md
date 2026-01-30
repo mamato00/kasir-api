@@ -412,12 +412,3 @@ Invalid request
 3. Verify semua required fields ada
 
 ---
-
-## Getting Help
-
-- Read [README.md](../README.md) untuk overview project
-- Check individual endpoint documentation
-- Look at code comments dan structure
-- Consult Go documentation: https://golang.org/doc/
-
----

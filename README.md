@@ -9,12 +9,12 @@ Kasir API adalah REST API yang dibangun menggunakan Go untuk penugasan project b
 - **CRUD Product**: CRUD operations untuk produk (Create, Read, Update, Delete)
 - **CRUD Category**: CRUD operations untuk kategori (Create, Read, Update, Delete)
 - **Health Check**: Endpoint untuk mengecek status API
-- **Database Integration**: Terintegrasi dengan PostgreSQL (Neon Serverless)
+- **Database Integration**: Terintegrasi dengan PostgreSQL
 
 ## Tech Stack
 
 - **Language**: Go 1.25.6
-- **Database**: PostgreSQL (Neon Serverless)
+- **Database**: PostgreSQL
 - **Dependencies**:
   - `github.com/lib/pq` - PostgreSQL driver untuk Go
   - `github.com/spf13/viper` - Environment variable loader

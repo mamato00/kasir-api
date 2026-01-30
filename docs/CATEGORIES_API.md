@@ -455,25 +455,4 @@ Anda dapat menguji endpoint-endpoint ini menggunakan tools berikut:
 3. Tambahkan request body jika diperlukan
 4. Klik Send
 
-### Dengan curl
-Lihat contoh-contoh curl di setiap endpoint di atas.
-
-### Dengan Thunder Client (VS Code)
-1. Install Thunder Client extension
-2. Buat request baru
-3. Pilih method dan masukkan URL
-4. Tambahkan body jika diperlukan
-5. Klik Send
-
----
-
-## Versioning
-
-Dokumentasi ini berlaku untuk:
-- Kasir API v1.0
-- Go 1.25.6
-- Category Service (Static/Memory-based)
-
----
-
 Last Updated: January 2026

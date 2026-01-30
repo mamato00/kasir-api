@@ -2,11 +2,6 @@
 
 Dokumentasi lengkap untuk semua endpoint yang berkaitan dengan Product (Produk).
 
-## Base URL
-```
-http://localhost:8080
-```
-
 ## Endpoints Overview
 
 | Method | Endpoint | Deskripsi |
@@ -39,16 +34,18 @@ Content-Type: application/json
 ```json
 [
   {
-    "id": 1,
-    "nama": "Kopi Arabika",
-    "harga": 25000,
-    "stok": 100
+    "product_id": 1,
+    "name": "Kopi Arabika",
+    "price": 25000,
+    "stock": 100,
+    "category": "Minuman"
   },
   {
     "id": 2,
-    "nama": "Teh Pucuk",
-    "harga": 8000,
-    "stok": 50
+    "name": "Teh Pucuk",
+    "price": 8000,
+    "stock": 50,
+    "category": "Minuman"
   }
 ]
 ```
@@ -82,9 +79,10 @@ Content-Type: application/json
 **Request Body:**
 ```json
 {
-  "nama": "Kopi Arabika",
-  "harga": 25000,
-  "stok": 100
+  "name": "Kopi Arabika",
+  "price": 25000,
+  "stock": 100,
+  "category_id": 2
 }
 ```
 
@@ -92,17 +90,19 @@ Content-Type: application/json
 
 | Field | Type | Required | Deskripsi |
 |-------|------|----------|-----------|
-| nama | string | Ya | Nama produk |
-| harga | integer | Ya | Harga produk |
-| stok | integer | Ya | Jumlah stok produk |
+| name | string | Ya | Nama produk |
+| price | integer | Ya | Harga produk |
+| stock | integer | Ya | Jumlah stock produk |
+| category_id | integer | Tidak | Kategori Produk |
 
 **Response (201 Created):**
 ```json
 {
   "id": 0,
-  "nama": "Kopi Arabika",
-  "harga": 25000,
-  "stok": 100
+  "name": "Kopi Arabika",
+  "price": 25000,
+  "stock": 100,
+  "category_id: 2
 }
 ```
 
@@ -110,36 +110,6 @@ Content-Type: application/json
 - `201 Created` - Produk berhasil dibuat
 - `400 Bad Request` - Invalid request format
 - `500 Internal Server Error` - Error database
-
-**Example dengan curl:**
-```bash
-curl -X POST http://localhost:8080/api/products \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nama": "Kopi Arabika",
-    "harga": 25000,
-    "stok": 100
-  }'
-```
-
-**Example dengan JavaScript (Fetch):**
-```javascript
-fetch('http://localhost:8080/api/products', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    nama: 'Kopi Arabika',
-    harga: 25000,
-    stok: 100
-  })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
-```
-
 ---
 
 ## 3. Get Product by ID
@@ -165,10 +135,11 @@ Content-Type: application/json
 **Response (200 OK):**
 ```json
 {
-  "id": 1,
-  "nama": "Kopi Arabika",
-  "harga": 25000,
-  "stok": 100
+  "product_id": 1,
+  "name": "Kopi Arabika",
+  "price": 25000,
+  "stock": 100,
+  "category": Minuman
 }
 ```
 
@@ -219,9 +190,9 @@ Content-Type: application/json
 **Request Body:**
 ```json
 {
-  "nama": "Kopi Arabika Premium",
-  "harga": 30000,
-  "stok": 150
+  "name": "Kopi Arabika Premium",
+  "price": 30000,
+  "stock": 150
 }
 ```
 
@@ -229,17 +200,17 @@ Content-Type: application/json
 
 | Field | Type | Required | Deskripsi |
 |-------|------|----------|-----------|
-| nama | string | Ya | Nama produk |
-| harga | integer | Ya | Harga produk |
-| stok | integer | Ya | Jumlah stok produk |
+| name | string | Ya | Nama produk |
+| price | integer | Ya | Harga produk |
+| stock | integer | Ya | Jumlah stock produk |
 
 **Response (200 OK):**
 ```json
 {
   "id": 1,
-  "nama": "Kopi Arabika Premium",
-  "harga": 30000,
-  "stok": 150
+  "name": "Kopi Arabika Premium",
+  "price": 30000,
+  "stock": 150
 }
 ```
 
@@ -258,31 +229,11 @@ Invalid Product ID
 curl -X PUT http://localhost:8080/api/products/1 \
   -H "Content-Type: application/json" \
   -d '{
-    "nama": "Kopi Arabika Premium",
-    "harga": 30000,
-    "stok": 150
+    "name": "Kopi Arabika Premium",
+    "price": 30000,
+    "stock": 150
   }'
 ```
-
-**Example dengan JavaScript (Fetch):**
-```javascript
-fetch('http://localhost:8080/api/products/1', {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    nama: 'Kopi Arabika Premium',
-    harga: 30000,
-    stok: 150
-  })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
-```
-
----
 
 ## 5. Delete Product
 
@@ -342,9 +293,9 @@ curl -X DELETE http://localhost:8080/api/products/1 \
 ```json
 {
   "id": 1,
-  "nama": "Kopi Arabika",
-  "harga": 25000,
-  "stok": 100
+  "name": "Kopi Arabika",
+  "price": 25000,
+  "stock": 100
 }
 ```
 
@@ -353,9 +304,9 @@ curl -X DELETE http://localhost:8080/api/products/1 \
 | Field | Type | Deskripsi |
 |-------|------|-----------|
 | id | integer | ID unik produk (auto-generated) |
-| nama | string | Nama produk |
-| harga | integer | Harga produk dalam Rupiah |
-| stok | integer | Jumlah stok produk yang tersedia |
+| name | string | Nama produk |
+| price | integer | Harga produk dalam Rupiah |
+| stock | integer | Jumlah stock produk yang tersedia |
 
 ---
 
@@ -401,32 +352,5 @@ Anda dapat menguji endpoint-endpoint ini menggunakan tools berikut:
 2. Buat request baru dengan method dan URL yang sesuai
 3. Tambahkan request body jika diperlukan
 4. Klik Send
-
-### Dengan curl
-Lihat contoh-contoh curl di setiap endpoint di atas.
-
-### Dengan Thunder Client (VS Code)
-1. Install Thunder Client extension
-2. Buat request baru
-3. Pilih method dan masukkan URL
-4. Tambahkan body jika diperlukan
-5. Klik Send
-
----
-
-## Rate Limiting
-
-Saat ini API tidak memiliki rate limiting. Penggunaan API unlimited untuk keperluan development dan testing.
-
----
-
-## Versioning
-
-Dokumentasi ini berlaku untuk:
-- Kasir API v1.0
-- Go 1.25.6
-- PostgreSQL database
-
----
 
 Last Updated: January 2026
